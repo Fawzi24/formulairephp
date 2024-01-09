@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Form</title>
+</head>
+<body>
+    
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Formulaire de réservation de voiture</title>
+        
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+            }
+        
+            form {
+                width: 300px;
+                margin: 0 auto;
+            }
+        
+            label {
+                display: block;
+                margin-top: 20px;
+            }
+        
+            input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="time"] {
+                width: 100%;
+                padding: 10px;
+                margin-top: 5px;
+            }
+        
+            input[type="submit"] {
+                margin-top: 20px;
+                padding: 10px 20px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+        
+            input[type="submit"]:hover {
+                background-color: #45a049;
+            }
+        </style>
+
+    </head>
+    <body>
+        <form action="send_email.php" method="post">
+            <label for="nom">Nom:</label><br>
+            <input type="text" id="nom" name="nom"><br>
+            <label for="prenom">Prénom:</label><br>
+            <input type="text" id="prenom" name="prenom"><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email"><br>
+            <label for="telephone">Numéro de téléphone:</label><br>
+            <input type="tel" id="telephone" name="telephone"><br>
+            <label for="date">Date de réservation:</label><br>
+            <input type="date" id="date" name="date"><br>
+            <label for="heure">Heure de réservation:</label><br>
+            <input type="time" id="heure" name="heure"><br>
+            <input type="submit" value="Réserver">
+        </form>
+    
+        <script>
+            document.querySelector("form").addEventListener("submit", function(event){
+                var nom = document.getElementById("nom").value;
+                var prenom = document.getElementById("prenom").value;
+                var email = document.getElementById("email").value;
+                var telephone = document.getElementById("telephone").value;
+                var date = document.getElementById("date").value;
+                var heure = document.getElementById("heure").value;
+            
+                if(nom === "" || prenom === "" || email === "" || telephone === "" || date === "" || heure === ""){
+                    alert("Tous les champs doivent être remplis");
+                    event.preventDefault();
+                } else if(!email.includes("@")) {
+                    alert("L'email n'est pas valide");
+                    event.preventDefault();
+                } else if(isNaN(telephone)) {
+                    alert("Le numéro de téléphone n'est pas valide");
+                    event.preventDefault();
+                }
+                window.onload = function() {
+    var url = window.location.href;
+    if(url.indexOf("?mailsend") > 0) {
+        alert("Votre réservation a été envoyée avec succès !");
+    }
+}
+            });
+            </script>
+    </body>
+    </html>
+
+</body>
+</html>
